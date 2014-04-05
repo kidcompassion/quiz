@@ -34,6 +34,10 @@ $(document).ready(function(){
 		active.next().removeClass('hide').addClass('active');
 
 		$('.finished').click(function(e){
+		
+			$('.results').html('Alldone');
+
+
 		console.log('basic' + totalBasic.length);
 		console.log('plus' + totalPlus.length);
 		console.log('rv' + totalRV.length);
@@ -66,18 +70,7 @@ $(document).ready(function(){
 
 
 
-/*	for each question,
-	if (radiobutton has slected basic, add point to total basic array)
-
-
-	for each ul, get the value of the selected radio box.
-	if it's basic, add a point to basic.
-	if it' plus, add a point to plus.
-	if it's rv, add a point to rv.
-
-*/
-
-		
+	
 	
 
 
