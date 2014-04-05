@@ -9,6 +9,14 @@ $(document).ready(function(){
 
 //functions
 
+	$('.prev').click(function(e){
+		var active = $('.active');
+		active.addClass('hide').removeClass('active');
+		active.prev().removeClass('hide').addClass('active');
+
+
+	});
+
 
 	$('.next').click(function(e){ //on click of next
 
@@ -47,60 +55,26 @@ $(document).ready(function(){
 			var membershipRV = new membershipType("RV", '$300', totalRV.length);
 
 
-		console.log(membershipBasic.level, membershipBasic.totalSelected);
-		console.log(membershipPlus.level, membershipPlus.totalSelected);
-		console.log(membershipRV.level, membershipRV.totalSelected);
+
+			jQuery.each(membershipBasic, function(i, val){
+				console.log(i + ' ' + val);
+			});
 
 
+			var highest = Math.max(membershipBasic.totalSelected, membershipPlus.totalSelected, membershipRV.totalSelected);
+			console.log(highest);
 
-$('.results').html(membershipBasic.level + ' ' + membershipBasic.totalSelected);
+					var finalTally = '<p>' +membershipBasic.level + ' : ' + membershipBasic.totalSelected + '</p>';
+					finalTally = '<p>' + finalTally + membershipPlus.level + ' : ' + membershipPlus.totalSelected + '</p>';
+					finalTally = '<p>' + finalTally + membershipRV.level + ' : ' + membershipRV.totalSelected + '</p>';
 
+		
 
-
-
-
-
-
-
-
-
+				$('.results').html( finalTally);
 
 
-
-	});
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-
+		});
 
 	});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 });
