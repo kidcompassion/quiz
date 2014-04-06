@@ -43,35 +43,43 @@ $(document).ready(function(){
 
 		$('.finished').click(function(e){
 		
-			
-			function membershipType(level, price, totalSelected){
-				this.level = level;
-				this.price = price;
-				this.totalSelected = totalSelected;
-			}
+		
+					var memberships = [
+				{
+					level: "Basic",
+					price: "$100",
+					totalSelected: totalBasic.length,
+					details: 'Your best option is basic!',
 
-			var membershipBasic = new membershipType("Basic", '$100', totalBasic.length);
-			var membershipPlus = new membershipType("Plus", '$200', totalPlus.length);
-			var membershipRV = new membershipType("RV", '$300', totalRV.length);
+				},
+				{
+					level: "Plus",
+					price: "$200",
+					totalSelected: totalPlus.length,
+					details: 'your best option is plus!'
+				},
+				{
+					level: "RV",
+					price: "$300",
+					totalSelected: totalRV.length,
+					details: 'your best option is RV!',
+				},
+			];
 
-
-
-			jQuery.each(membershipBasic, function(i, val){
-				console.log(i + ' ' + val);
+			memberships.sort(function(a, b) { 
+			    return a.totalSelected - b.totalSelected;
 			});
 
+			for(var i in memberships){
+			    var msg = "<p>Based on your choices, we think your best choice for membership is: </p>"
+			    msg = msg + "<p><strong>" + memberships[i].level + "</strong></p>";
+			    msg = msg + "<p><strong>" + memberships[i].price + "</strong></p>";
+			    msg = msg + "<p><strong>" + memberships[i].details + "</strong></p>";
 
-			var highest = Math.max(membershipBasic.totalSelected, membershipPlus.totalSelected, membershipRV.totalSelected);
-			console.log(highest);
 
-					var finalTally = '<p>' +membershipBasic.level + ' : ' + membershipBasic.totalSelected + '</p>';
-					finalTally = '<p>' + finalTally + membershipPlus.level + ' : ' + membershipPlus.totalSelected + '</p>';
-					finalTally = '<p>' + finalTally + membershipRV.level + ' : ' + membershipRV.totalSelected + '</p>';
-
-		
-
-				$('.results').html( finalTally);
-
+			    $('.results').html(msg);
+			}
+				
 
 		});
 
